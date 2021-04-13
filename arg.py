@@ -11,6 +11,7 @@ args.file_train = "./data_train.txt"
 args.file_dev = "./data_dev.txt"
 args.sentence_length = 30
 args.epoch = 50
+args.save_dir = "./model"
 args.weight_file = "weight.pkl"
 args.model_file = "model.pkl"
 args.save_model = False

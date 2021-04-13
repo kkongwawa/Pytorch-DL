@@ -87,14 +87,16 @@ def train(train_loader, dev_loader, model, criterion, optimizer, scaler, schedul
                 str(epoch + 1), str(evaluate_loss.item()))
             logger.info(data)
             logger.info("save model...")
+            if not os.path.isdir(args.save_dir):
+                os.mkdir(args.save_dir)
             if args.save_model:
                 torch.save(model, args.model_file)
-                torch.save(model, "model\{}_model_iter_{}_loss_{:.2f}.pkl".format(
+                torch.save(model, args.save_dir + "\{}_model_iter_{}_loss_{:.2f}.pkl".format(
                     time.strftime('%y%m%d%H'), epoch, loss.item())
                            )
             else:
                 torch.save(model.state_dict(), args.weight_file)
-                torch.save(model.state_dict(), "model\{}_weight_iter_{}_loss_{:.2f}.pkl".format(
+                torch.save(model.state_dict(), args.save_dir + "\{}_weight_iter_{}_loss_{:.2f}.pkl".format(
                     time.strftime('%y%m%d%H'), epoch, loss.item())
                            )
 
